@@ -63,13 +63,11 @@ fun PantallaAcademia(modifier: Modifier = Modifier, asignaturas: ArrayList<Asign
         )
         AcademiaApp(modifier = Modifier,
             asignaturas,
-            viewModelAcademia,
-            uiState,
+            viewModelAcademia
         )
 
         EntradaTextField(modifier = Modifier,
-            viewModelAcademia,
-            uiState,
+            viewModelAcademia
         )
         CuadroTexto(modifier = Modifier, uiState)
 
@@ -79,8 +77,7 @@ fun PantallaAcademia(modifier: Modifier = Modifier, asignaturas: ArrayList<Asign
 
 @Composable
 fun AcademiaApp(modifier: Modifier = Modifier, asignaturas: ArrayList<Asignatura>,
-                viewModelAcademia: AcademiaViewModel,
-                uiState: AcademiaUIState){
+                viewModelAcademia: AcademiaViewModel){
         LazyVerticalGrid(
             modifier = Modifier.height(300.dp),
             columns = GridCells.Fixed(2),
@@ -91,14 +88,14 @@ fun AcademiaApp(modifier: Modifier = Modifier, asignaturas: ArrayList<Asignatura
                 Card (modifier = Modifier.padding(5.dp)) {
                     Text(
                         text = "Asig: ${asignatura.nombre}",
-                        modifier = Modifier
+                        modifier = modifier
                             .background(Color.Yellow)
                             .padding(15.dp)
                             .fillMaxWidth()
                     )
                     Text(
                         text = "€/hora: ${asignatura.precioHora}",
-                        modifier = Modifier
+                        modifier = modifier
                             .background(Color.Cyan)
                             .padding(15.dp)
                             .fillMaxWidth()
@@ -124,7 +121,7 @@ fun AcademiaApp(modifier: Modifier = Modifier, asignaturas: ArrayList<Asignatura
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EntradaTextField(modifier: Modifier = Modifier, viewModelAcademia: AcademiaViewModel, uiState: AcademiaUIState){
+fun EntradaTextField(modifier: Modifier = Modifier, viewModelAcademia: AcademiaViewModel){
     TextField(
         value = viewModelAcademia.valorHorasNuevo2,
         onValueChange = { viewModelAcademia.nuevoValorHoras(it) },
@@ -133,7 +130,7 @@ fun EntradaTextField(modifier: Modifier = Modifier, viewModelAcademia: AcademiaV
             keyboardType = KeyboardType.Number,
             imeAction = ImeAction.Next
         ),
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(15.dp)
     )
@@ -142,21 +139,21 @@ fun EntradaTextField(modifier: Modifier = Modifier, viewModelAcademia: AcademiaV
 @Composable
 fun CuadroTexto(modifier: Modifier = Modifier, uiState: AcademiaUIState){
     Column(
-        modifier = Modifier.height(300.dp)
+        modifier = modifier.height(300.dp)
             .width(500.dp)
             .background(Color.LightGray)
             .padding(20.dp)
     ) {
         Text(
             text = "Ultima acción:\n" + uiState.textoUltimaAccion,
-            modifier = Modifier
+            modifier = modifier
                 .background(Color.Magenta)
                 .padding(10.dp)
                 .align(alignment = Alignment.CenterHorizontally)
         )
         Text(
             text = "Ultima acción:\n" + uiState.textoResumen,
-            modifier = Modifier
+            modifier = modifier
                 .background(Color.White)
                 .padding(10.dp)
                 .align(alignment = Alignment.CenterHorizontally)
